@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "631277486389",
+    "project_id": "quizdone-bbbdb",
+    "storage_bucket": "quizdone-bbbdb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:631277486389:android:f1713da768f3fa985f0c7c",
+        "android_client_info": {
+          "package_name": "com.example.quizdone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "631277486389-lc6a54in4eeqot9t8urgi9mdvu93ni2i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5fWSEibEJSo6pjZA8WjLQ3aQbjzoG4ls"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "631277486389-lc6a54in4eeqot9t8urgi9mdvu93ni2i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
