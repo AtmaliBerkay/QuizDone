@@ -1,5 +1,6 @@
 package com.example.quizdone.main.ui.login
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,32 +9,46 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.example.quizdone.R
 import com.example.quizdone.databinding.FragmentLoginBinding
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-
-    private const val ARG_PARAM1 = "param1"
-    private const val ARG_PARAM2 = "param2"
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
+import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.AuthCredential
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.GoogleAuthProvider
 
 class LoginFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
+    //Google Sign in request code
+    private val rcSignIn = 123
+    //Firebase Authentication
+    private lateinit var auth: FirebaseAuth
+    private lateinit var googleSignInClient : GoogleSignInClient
+    val firebaseAuth = FirebaseAuth.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
         }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        SetUpUI()
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestEmail()
+            .build()
+        val googleSignInClient = GoogleSignIn.getClient(requireContext(),gso)
+        binding.btnGoogle.setOnClickListener{
+            signInWithGoogle(googleSignInClient,firebaseAuth)
+        }
+        setUpUI()
     }
 
     override fun onCreateView(
@@ -52,7 +67,7 @@ class LoginFragment : Fragment() {
         _binding = null
     }
 
-    private fun SetUpUI(){
+    private fun setUpUI(){
 
         binding.btnLogin.setOnClickListener{
             if (binding.etMail.text.isEmpty() || binding.etPassword.text.isEmpty()) {
@@ -69,14 +84,34 @@ class LoginFragment : Fragment() {
             }
         }
     }
-    companion object {
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            LoginFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    private fun signInWithGoogle(googleSignInClient: GoogleSignInClient, firebaseAuth: FirebaseAuth){
+        val signInIntent = googleSignInClient.signInIntent
+        startActivityForResult(signInIntent,rcSignIn)
+    }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == rcSignIn) {
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+            try {
+                val account = task.getResult(ApiException::class.java)
+                if (account != null) {
+                    firebaseAuthWithGoogle(account)
+                }
+            } catch (e: ApiException) {
+                Snackbar.make(requireView(), "Google sign-in failed", Snackbar.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private fun firebaseAuthWithGoogle(account: GoogleSignInAccount) {
+        val credential: AuthCredential = GoogleAuthProvider.getCredential(account.idToken, null)
+        firebaseAuth.signInWithCredential(credential)
+            .addOnCompleteListener(requireActivity()) { task ->
+                if (task.isSuccessful) {
+                    val user: FirebaseUser? = firebaseAuth.currentUser
+                    // TODO: Handle successful sign-in
+                } else {
+                    Snackbar.make(requireView(), "Authentication failed", Snackbar.LENGTH_SHORT).show()
                 }
             }
     }
