@@ -59,6 +59,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "1008436552416-3497de0ed5oam9rjpv7p27iplcsnjf13.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.quizdone",
+            "certificate_hash": "df5786910df5da5c25446edfb7c7af71960d603b"
+          }
+        },
+        {
           "client_id": "1008436552416-jrjf3b5s980cqoqrg4630e5vdoc4tvk1.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
