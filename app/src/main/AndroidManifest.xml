@@ -34,7 +34,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".main.ui.login.LoginFragment"
+            android:name=".main.ui.category.CategoryFragment"
             android:exported="true"
             android:noHistory="true"
             android:theme="@style/Theme.Design.NoActionBar" />

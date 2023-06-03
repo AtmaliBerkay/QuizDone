@@ -3,7 +3,7 @@ package com.example.quizdone.main
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.quizdone.R
-import com.example.quizdone.main.ui.login.LoginFragment
+import com.example.quizdone.main.ui.category.CategoryFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -14,12 +14,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        if(savedInstanceState == null){
+        if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .replace(android.R.id.content,LoginFragment())
-                .commit()
+                .replace(R.id.flMain, CategoryFragment.newInstance())
+                .commitNow()
         }
-        //binding = ActivityMainBinding.inflate(layoutInflater)
-        //setContentView(binding.root)
     }
 }
