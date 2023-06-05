@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.example.quizdone.R
 import com.example.quizdone.databinding.FragmentLoginBinding
+import com.example.quizdone.main.ui.category.CategoryFragment
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -76,11 +77,15 @@ class LoginFragment : Fragment() {
             val email = binding.etMail.text.toString()
             val password = binding.etPassword.text.toString()
             signInEmail(email,password)
+
         }
         binding.btnSignUp.setOnClickListener {
-            val email = binding.etMail.text.toString()
+            //Navigate to Category Fragment if sign in successful
+            val transaction = fragmentManager?.beginTransaction()
+            transaction?.replace(R.id.navContainer,RegisterFragment())?.commit()
+/*            val email = binding.etMail.text.toString()
             val password = binding.etPassword.text.toString()
-            createAccount(email, password)
+            createAccount(email, password)*/
         }
     }
 
@@ -109,10 +114,11 @@ class LoginFragment : Fragment() {
                         Log.d(TAG, "createUserWithEmail:success")
                         val user = auth.currentUser
                         updateUI(user)
+
                     } else {
                         // If sign in fails, display a message to the user.
                         Log.w(TAG, "createUserWithEmail:failure", task.exception)
-                        Toast.makeText(requireContext(), "Authentication failed.", Toast.LENGTH_SHORT,).show()
+                        Toast.makeText(requireContext(), "Creating an account is failed.", Toast.LENGTH_SHORT,).show()
                         updateUI(null)
                     }
                 }
@@ -126,6 +132,9 @@ class LoginFragment : Fragment() {
                         Log.d(TAG, "signInWithCredential:success")
                         val user = auth.currentUser
                         updateUI(user)
+                        //Navigate to Category Fragment if sign in successful
+                        val transaction = fragmentManager?.beginTransaction()
+                        transaction?.replace(R.id.navContainer,CategoryFragment())?.commit()
                     } else {
                         // If sign in fails, display a message to the user.
                         Log.w(TAG, "signInWithCredential:failure", task.exception)
@@ -154,6 +163,9 @@ class LoginFragment : Fragment() {
                     Log.d(TAG, "signInWithEmail:success")
                     val user = auth.currentUser
                     updateUI(user)
+                    //Navigate to Category Fragment if sign in successful
+                    val transaction = fragmentManager?.beginTransaction()
+                    transaction?.replace(R.id.navContainer,CategoryFragment())?.commit()
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w(TAG, "signInWithEmail:failure", task.exception)

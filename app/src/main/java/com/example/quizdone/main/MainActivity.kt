@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.quizdone.R
 import com.example.quizdone.main.ui.category.CategoryFragment
+import com.example.quizdone.main.ui.login.LoginFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -14,10 +15,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        if (savedInstanceState == null) {
+        //LoginFragment as the first screen
             supportFragmentManager.beginTransaction()
-                .replace(R.id.flMain, CategoryFragment.newInstance())
-                .commitNow()
-        }
+                .replace(R.id.navContainer, LoginFragment()).commit()
+
     }
 }

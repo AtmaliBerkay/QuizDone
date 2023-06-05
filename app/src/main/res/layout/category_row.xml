@@ -3,8 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardElevation="8dp"
-    app:cardCornerRadius="8dp"
+    app:cardElevation="10dp"
+    app:cardCornerRadius="25dp"
     android:layout_margin="16dp"
     android:clickable="true"
     android:focusable="true">
@@ -50,5 +50,4 @@
             android:layout_gravity="center"
             android:text="Test your knowledge with a category that includes questions about specific periods or events in history."/>
     </LinearLayout>
-
 </androidx.cardview.widget.CardView>

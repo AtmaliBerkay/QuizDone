@@ -39,17 +39,6 @@
         android:textAlignment="center"
         android:textSize="16dp" />
 
-    <CheckBox
-        android:id="@+id/cbHatirla"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/etPassword"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="20dp"
-        android:text="Beni Hatırla"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <EditText
         android:id="@+id/etPassword"
         android:layout_width="200dp"
