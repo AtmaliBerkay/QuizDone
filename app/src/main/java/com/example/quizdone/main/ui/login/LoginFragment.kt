@@ -104,25 +104,7 @@ class LoginFragment : Fragment() {
         _binding = null
     }
 
-    private fun createAccount(email: String, password:String){
 
-            auth.createUserWithEmailAndPassword(email,password)
-                .addOnCompleteListener(requireActivity()) { task ->
-                    if (task.isSuccessful) {
-                        // Sign in success, update UI with the signed-in user's information
-                        //Hesap
-                        Log.d(TAG, "createUserWithEmail:success")
-                        val user = auth.currentUser
-                        updateUI(user)
-
-                    } else {
-                        // If sign in fails, display a message to the user.
-                        Log.w(TAG, "createUserWithEmail:failure", task.exception)
-                        Toast.makeText(requireContext(), "Creating an account is failed.", Toast.LENGTH_SHORT,).show()
-                        updateUI(null)
-                    }
-                }
-            }
     private fun firebaseAuthWithGoogle(idToken: String) {
         val credential = GoogleAuthProvider.getCredential(idToken,null)
         auth.signInWithCredential(credential)
@@ -169,7 +151,7 @@ class LoginFragment : Fragment() {
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w(TAG, "signInWithEmail:failure", task.exception)
-                    Toast.makeText(requireContext(), "Authentication failed.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "Please check your mail address and password.", Toast.LENGTH_SHORT).show()
                     updateUI(null)
                 }
             }

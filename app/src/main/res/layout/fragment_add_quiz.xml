@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".main.ui.quiz.AddQuizFragment"
+    android:background="@drawable/bg_color">
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/ivLogo"
+        android:layout_width="402dp"
+        android:layout_height="165dp"
+        android:src="@drawable/quiz_done_logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="15dp"
+        android:src="@drawable/apps_layout_home_svgrepo_com"
+        app:layout_constraintBottom_toBottomOf="@+id/etCategory"
+        app:layout_constraintStart_toStartOf="@+id/etCategory"
+        app:layout_constraintTop_toTopOf="@+id/etCategory" />
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="15dp"
+        android:src="@drawable/question_mark_question_svgrepo_com"
+        app:layout_constraintBottom_toBottomOf="@+id/etQuestion"
+        app:layout_constraintStart_toStartOf="@+id/etQuestion"
+        app:layout_constraintTop_toTopOf="@+id/etQuestion" />
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="15dp"
+        android:src="@drawable/tick_svgrepo_com"
+        app:layout_constraintBottom_toBottomOf="@+id/etOption1"
+        app:layout_constraintStart_toStartOf="@+id/etOption1"
+        app:layout_constraintTop_toTopOf="@+id/etOption1" />
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="15dp"
+        android:src="@drawable/full_cross_circle_svgrepo_com"
+        app:layout_constraintBottom_toBottomOf="@+id/etOption2"
+        app:layout_constraintStart_toStartOf="@+id/etOption2"
+        app:layout_constraintTop_toTopOf="@+id/etOption2" />
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="15dp"
+        android:src="@drawable/full_cross_circle_svgrepo_com"
+        app:layout_constraintBottom_toBottomOf="@+id/etOption3"
+        app:layout_constraintStart_toStartOf="@+id/etOption3"
+        app:layout_constraintTop_toTopOf="@+id/etOption3" />
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="15dp"
+        android:src="@drawable/full_cross_circle_svgrepo_com"
+        app:layout_constraintBottom_toBottomOf="@+id/etOption4"
+        app:layout_constraintStart_toStartOf="@+id/etOption4"
+        app:layout_constraintTop_toTopOf="@+id/etOption4" />
+
+
+    <EditText
+        android:id="@+id/etCategory"
+        android:layout_width="390dp"
+        android:layout_height="50dp"
+        android:hint="Category:"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivLogo" />
+
+    <EditText
+        android:id="@+id/etQuestion"
+        android:layout_width="390dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="30dp"
+        android:hint="Question:"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etCategory" />
+
+    <EditText
+        android:id="@+id/etOption1"
+        android:layout_width="390dp"
+        android:layout_height="50dp"
+        android:hint="Option 1 (True):"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etQuestion"
+        android:layout_marginTop="30dp"/>
+
+    <EditText
+        android:id="@+id/etOption2"
+        android:layout_width="390dp"
+        android:layout_height="50dp"
+        android:hint="Option 2 :"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etOption1" />
+
+    <EditText
+        android:id="@+id/etOption3"
+        android:layout_width="390dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="30dp"
+        android:hint="Option 3 :"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etOption2" />
+
+    <EditText
+        android:id="@+id/etOption4"
+        android:layout_width="390dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="30dp"
+        android:hint="Option 4 :"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etOption3" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/btnAdd"
+        android:layout_width="180dp"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        app:cardBackgroundColor="@color/green"
+        app:cardCornerRadius="25dp"
+        app:cardElevation="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etOption4">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="Add Question"
+                android:textColor="@color/black"
+                android:textSize="18dp" />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/btnCancel"
+        android:layout_width="180dp"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="20dp"
+        app:cardBackgroundColor="@color/design_default_color_error"
+        app:cardCornerRadius="25dp"
+        app:cardElevation="10dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etOption4">
+
+        <RelativeLayout
+            android:layout_width="175dp"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="Cancel"
+                android:textColor="@color/black"
+                android:textSize="18dp" />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</ScrollView>

@@ -8,8 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.quizdone.R
 import com.example.quizdone.adapter.CategoryAdapter
 import com.example.quizdone.databinding.FragmentCategoryBinding
+import com.example.quizdone.main.ui.quiz.AddQuizFragment
 import com.example.quizdone.model.CategoryModel
 import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.EventListener
@@ -45,6 +47,14 @@ class CategoryFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.adapter = categoryAdapter
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.fbAddQuestion.setOnClickListener{
+            val transaction = fragmentManager?.beginTransaction()
+            transaction?.replace(R.id.navContainer,AddQuizFragment())?.commit()
+        }
     }
 
     override fun onDestroyView() {

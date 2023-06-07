@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.example.quizdone.R
 import com.example.quizdone.databinding.FragmentRegisterBinding
-import com.example.quizdone.main.ui.category.CategoryFragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
