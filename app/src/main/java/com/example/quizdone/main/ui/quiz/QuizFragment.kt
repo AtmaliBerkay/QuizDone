@@ -3,26 +3,19 @@ package com.example.quizdone.main.ui.quiz
 import android.content.ContentValues.TAG
 import android.graphics.Color
 import android.os.Bundle
-import android.provider.CalendarContract.Colors
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.quizdone.R
 import com.example.quizdone.databinding.FragmentQuizBinding
 import com.example.quizdone.main.ui.category.CategoryFragment
-import com.example.quizdone.model.CategoryModel
 import com.example.quizdone.model.QuestionModel
 import com.google.firebase.database.*
-import com.google.firebase.ktx.Firebase
-import java.util.Timer
-import javax.security.auth.Subject
-import kotlin.concurrent.schedule
 
 
 class QuizFragment : Fragment() {
@@ -130,30 +123,30 @@ class QuizFragment : Fragment() {
         }
     }
     private fun displayCurrentQuestion() {
-            val purple200Color = ContextCompat.getColor(requireContext(), R.color.purple_200)
-            val answerTitles = takingAnswerTitles()
-            binding.tvQuestion.text = questionsArray[questionCount].title
-            binding.btnOption1.text = answerTitles[0]
-            binding.btnOption2.text = answerTitles[1]
-            binding.btnOption3.text = answerTitles[2]
-            binding.btnOption4.text = answerTitles[3]
-            binding.btnOption1.setBackgroundColor(purple200Color)
-            binding.btnOption2.setBackgroundColor(purple200Color)
-            binding.btnOption3.setBackgroundColor(purple200Color)
-            binding.btnOption4.setBackgroundColor(purple200Color)
-            binding.tvScore.text = "Score: $userScore"
+        val purple200Color = ContextCompat.getColor(requireContext(), R.color.purple_200)
+        val answerTitles = takingAnswerTitles()
+        binding.tvQuestion.text = questionsArray[questionCount].title
+        binding.btnOption1.text = answerTitles[0]
+        binding.btnOption2.text = answerTitles[1]
+        binding.btnOption3.text = answerTitles[2]
+        binding.btnOption4.text = answerTitles[3]
+        binding.btnOption1.setBackgroundColor(purple200Color)
+        binding.btnOption2.setBackgroundColor(purple200Color)
+        binding.btnOption3.setBackgroundColor(purple200Color)
+        binding.btnOption4.setBackgroundColor(purple200Color)
+        binding.tvScore.text = "Score: $userScore"
 
-            binding.btnOption1.isEnabled = true
-            binding.btnOption2.isEnabled = true
-            binding.btnOption3.isEnabled = true
-            binding.btnOption4.isEnabled = true
+        binding.btnOption1.isEnabled = true
+        binding.btnOption2.isEnabled = true
+        binding.btnOption3.isEnabled = true
+        binding.btnOption4.isEnabled = true
     }
 
     fun takingAnswerTitles(): List<String> {
         val answerTitles: MutableList<String> = mutableListOf()
-            for (answers in questionsArray[questionCount].options.keys) {
-                answerTitles.add(answers)
-            }
+        for (answers in questionsArray[questionCount].options.keys) {
+            answerTitles.add(answers)
+        }
         return answerTitles
     }
 

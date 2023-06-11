@@ -27,8 +27,14 @@
         android:layout_marginEnd="20dp"
         android:src="@drawable/baseline_add_24"/>
 
-    <!--<include layout="@layout/category_row"
-        android:id="@+id/cvCategory"
-        app:layout_constraintTop_toBottomOf="@id/rvCategory" />-->
+    <ImageView
+        android:id="@+id/ivOut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/exit_svgrepo_com"
+        android:clickable="true"
+        android:focusable="true"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

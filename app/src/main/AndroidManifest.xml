@@ -16,11 +16,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.QuizDone"
         tools:targetApi="31">
-        <!--
-         <activity
-            android:name=".main.ui.login.LoginActivity"
-            android:exported="false" />
-        -->
         <activity
             android:name=".main.MainActivity"
             android:exported="true"

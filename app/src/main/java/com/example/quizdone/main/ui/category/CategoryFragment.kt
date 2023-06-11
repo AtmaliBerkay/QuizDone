@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.quizdone.R
 import com.example.quizdone.adapter.CategoryAdapter
 import com.example.quizdone.databinding.FragmentCategoryBinding
+import com.example.quizdone.main.ui.login.LoginFragment
 import com.example.quizdone.main.ui.quiz.AddQuizFragment
 import com.example.quizdone.main.ui.quiz.QuizFragment
 import com.example.quizdone.model.CategoryModel
@@ -54,6 +55,10 @@ class CategoryFragment : Fragment() {
         binding.fbAddQuestion.setOnClickListener{
             val transaction = fragmentManager?.beginTransaction()
             transaction?.replace(R.id.navContainer,AddQuizFragment())?.commit()
+        }
+        binding.ivOut.setOnClickListener{
+            val transaction = fragmentManager?.beginTransaction()
+            transaction?.replace(R.id.navContainer,LoginFragment())?.commit()
         }
         goToQuiz()
     }
