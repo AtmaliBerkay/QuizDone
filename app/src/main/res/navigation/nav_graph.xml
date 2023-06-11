@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_categoryFragment_to_addQuizFragment"
             app:destination="@id/addQuizFragment" />
+        <action
+            android:id="@+id/action_categoryFragment_to_quizFragment"
+            app:destination="@id/quizFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -42,6 +45,15 @@
         tools:layout="@layout/fragment_add_quiz" >
         <action
             android:id="@+id/action_addQuizFragment_to_categoryFragment"
+            app:destination="@id/categoryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/quizFragment"
+        android:name="com.example.quizdone.main.ui.quiz.QuizFragment"
+        android:label="fragment_quiz"
+        tools:layout="@layout/fragment_quiz" >
+        <action
+            android:id="@+id/action_quizFragment_to_categoryFragment"
             app:destination="@id/categoryFragment" />
     </fragment>
 </navigation>

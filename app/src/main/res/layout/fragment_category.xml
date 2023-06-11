@@ -26,4 +26,9 @@
         android:layout_marginBottom="20dp"
         android:layout_marginEnd="20dp"
         android:src="@drawable/baseline_add_24"/>
+
+    <!--<include layout="@layout/category_row"
+        android:id="@+id/cvCategory"
+        app:layout_constraintTop_toBottomOf="@id/rvCategory" />-->
+
 </androidx.constraintlayout.widget.ConstraintLayout>

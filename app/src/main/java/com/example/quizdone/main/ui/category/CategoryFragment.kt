@@ -2,16 +2,17 @@ package com.example.quizdone.main.ui.category
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quizdone.R
 import com.example.quizdone.adapter.CategoryAdapter
 import com.example.quizdone.databinding.FragmentCategoryBinding
 import com.example.quizdone.main.ui.quiz.AddQuizFragment
+import com.example.quizdone.main.ui.quiz.QuizFragment
 import com.example.quizdone.model.CategoryModel
 import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.EventListener
@@ -19,16 +20,16 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.QuerySnapshot
 
+
 class CategoryFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var categoryAdapter: CategoryAdapter
     private lateinit var db: FirebaseFirestore
     private lateinit var categoryArrayList: ArrayList<CategoryModel>
-
+    var questionIndex : String? = null
     private var _binding: FragmentCategoryBinding? = null
     private val binding get() = _binding!!
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,7 +43,6 @@ class CategoryFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentCategoryBinding.inflate(inflater, container, false)
-        val view = binding.root
         recyclerView = binding.rvCategory
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.adapter = categoryAdapter
@@ -55,6 +55,7 @@ class CategoryFragment : Fragment() {
             val transaction = fragmentManager?.beginTransaction()
             transaction?.replace(R.id.navContainer,AddQuizFragment())?.commit()
         }
+        goToQuiz()
     }
 
     override fun onDestroyView() {
@@ -82,4 +83,22 @@ class CategoryFragment : Fragment() {
             }
         })
     }
+    private fun goToQuiz() {
+
+        categoryAdapter.setOnItemClickListener(object : CategoryAdapter.onItemClickListener {
+            override fun onItemClick(position: Int) {
+
+                val questionIndex = categoryArrayList[position].quizId
+                val bundle = Bundle()
+                bundle.putString("questionIndex", questionIndex)
+                val quizFragment = QuizFragment()
+                quizFragment.arguments = bundle
+                val transaction = requireFragmentManager().beginTransaction()
+                transaction.replace(R.id.navContainer, quizFragment)
+                transaction.addToBackStack(null)
+                transaction.commit()
+            }
+        })
+    }
+
 }

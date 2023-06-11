@@ -1,6 +1,5 @@
 package com.example.quizdone.model
 
-
 data class CategoryModel(
 var quizDesc: String? = null,
 var quizId: String? = null,
