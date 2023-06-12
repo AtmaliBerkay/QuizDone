@@ -72,6 +72,7 @@ class QuizFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         questionIndex = arguments?.getString("questionIndex")
+        binding.btnNext.isEnabled = false
 
     }
     private fun getQuestions() {
@@ -89,9 +90,6 @@ class QuizFragment : Fragment() {
                         val question = QuestionModel(title = title, subject = subject, options = options)
                         questionsArray.add(question)
                     }
-
-
-
                 }
                 displayCurrentQuestion()
             }
@@ -100,19 +98,28 @@ class QuizFragment : Fragment() {
             }
     }
     fun pressAnswer(sender: Button) {
-        val check = answerCheck(sender)
+        val answerTitles = takingAnswerTitles()
         val myAnswer = sender.tag?.toString()?.toIntOrNull() ?: 0
 
-        if (check[myAnswer]) {
+        val isCorrectAnswer = questionsArray[questionCount].options[answerTitles[myAnswer]] ?: false
+        val correctAnswerIndex = answerTitles.indexOfFirst { questionsArray[questionCount].options[it] == true }
+
+        if (isCorrectAnswer) {
             userScore++
             sender.setBackgroundColor(Color.GREEN)
         } else {
             sender.setBackgroundColor(Color.RED)
+            if (correctAnswerIndex != -1) {
+                val correctAnswerButton = getAnswerButtonByIndex(correctAnswerIndex)
+                correctAnswerButton?.setBackgroundColor(Color.GREEN)
+            }
         }
+
         binding.btnOption1.isEnabled = false
         binding.btnOption2.isEnabled = false
         binding.btnOption3.isEnabled = false
         binding.btnOption4.isEnabled = false
+        binding.btnNext.isEnabled = true
 
         if (questionCount != questionsArray.size - 1) {
             questionCount++
@@ -122,6 +129,17 @@ class QuizFragment : Fragment() {
             // dismiss(animated = true) { }
         }
     }
+
+    private fun getAnswerButtonByIndex(index: Int): Button? {
+        return when (index) {
+            0 -> binding.btnOption1
+            1 -> binding.btnOption2
+            2 -> binding.btnOption3
+            3 -> binding.btnOption4
+            else -> null
+        }
+    }
+
     private fun displayCurrentQuestion() {
         val purple200Color = ContextCompat.getColor(requireContext(), R.color.purple_200)
         val answerTitles = takingAnswerTitles()
@@ -166,7 +184,7 @@ class QuizFragment : Fragment() {
         if (questionCount < questionsArray.size) {
             displayCurrentQuestion()
         } else {
-            Toast.makeText(context,"Questions Finished",Toast.LENGTH_SHORT).show()
+            Toast.makeText(context,"Questions Finished. Your Score is: $userScore ",Toast.LENGTH_SHORT).show()
             finishQuiz()
         }
     }
