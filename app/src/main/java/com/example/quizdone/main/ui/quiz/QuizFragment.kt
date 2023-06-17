@@ -105,7 +105,8 @@ class QuizFragment : Fragment() {
         val correctAnswerIndex = answerTitles.indexOfFirst { questionsArray[questionCount].options[it] == true }
 
         if (isCorrectAnswer) {
-            userScore++
+            userScore += 100
+            binding.tvScore.text = userScore.toString()
             sender.setBackgroundColor(Color.GREEN)
         } else {
             sender.setBackgroundColor(Color.RED)
